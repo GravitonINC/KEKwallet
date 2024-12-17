@@ -120,6 +120,14 @@ pnpm web3:codegen
 
 If you're using anything on Ethereum, be sure to add your RPC to the .env
 
+#### Hyperliquid Configuration
+
+The application uses Hyperliquid's official API endpoints with built-in rate limiting:
+- Mainnet: https://api.hyperliquid.xyz
+- Testnet: https://api.hyperliquid-testnet.xyz
+
+Configure the environment using HYPERLIQUID_TESTNET in your .env file.
+
 That's it, you're now set up.
 
 ### Start local dev server
