@@ -1,13 +1,18 @@
-import { Hyperliquid } from 'hyperliquid'
+import { Hyperliquid } from 'hyperliquid';
+import { HyperliquidAgentConfig } from '../types/hyperliquid';
 
 export class HyperliquidService {
-  private client: Hyperliquid
+  private client: Hyperliquid;
 
-  constructor(privateKey: string | null = null, testnet: boolean = false) {
-    this.client = new Hyperliquid(privateKey, testnet)
+  constructor(config: HyperliquidAgentConfig) {
+    this.client = new Hyperliquid(
+      config.agentPrivateKey,
+      config.isTestnet ?? false,
+      config.walletAddress
+    );
   }
 
   async connect() {
-    await this.client.connect()
+    await this.client.connect();
   }
 }
