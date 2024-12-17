@@ -1,4 +1,3 @@
-import { drizzle } from 'drizzle-orm/mysql2'
 import mysql from 'mysql2/promise'
 
 export async function createConnection() {
@@ -12,5 +11,5 @@ export async function createConnection() {
       : undefined,
   })
 
-  return drizzle(pool)
+  return pool
 }

@@ -1,11 +1,13 @@
 import { createConnection } from './cloud-sql'
-import type { MySql2Database } from 'drizzle-orm/mysql2'
+import { MySql2Database, drizzle } from 'drizzle-orm/mysql2'
+import * as schema from './schema'
 
-let db: MySql2Database | null = null
+let db: MySql2Database<typeof schema> | null = null
 
-export async function getDb() {
+export async function getDb(): Promise<MySql2Database<typeof schema>> {
   if (!db) {
-    db = await createConnection()
+    const connection = await createConnection()
+    db = drizzle(connection, { schema, mode: 'default' })
   }
   return db
 }
