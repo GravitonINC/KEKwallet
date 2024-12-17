@@ -1,8 +1,11 @@
-import { drizzle } from 'drizzle-orm/planetscale-serverless'
-import { connect } from '@planetscale/database'
+import { createConnection } from './cloud-sql'
+import type { MySql2Database } from 'drizzle-orm/mysql2'
 
-const connection = connect({
-  url: process.env.DATABASE_URL!,
-})
+let db: MySql2Database | null = null
 
-export const db = drizzle(connection)
+export async function getDb() {
+  if (!db) {
+    db = await createConnection()
+  }
+  return db
+}
