@@ -23,6 +23,15 @@ export const users = mysqlTable('users', {
   updated_at: timestamp('updated_at').notNull(),
 })
 
+export const hyperliquidAgentWallets = mysqlTable('hyperliquid_agent_wallets', {
+  id: varchar('id', { length: 191 }).primaryKey().notNull(),
+  user_id: varchar('user_id', { length: 191 }).notNull(),
+  wallet_address: varchar('wallet_address', { length: 191 }).notNull(),
+  wallet_name: varchar('wallet_name', { length: 191 }),
+  created_at: timestamp('created_at').notNull(),
+  updated_at: timestamp('updated_at').notNull(),
+})
+
 // Define types for database operations
 export type User = {
   internal_id: string
@@ -38,3 +47,14 @@ export type User = {
 }
 
 export type NewUser = Omit<User, 'created_at' | 'updated_at'>
+
+export type HyperliquidAgentWallet = {
+  id: string
+  user_id: string
+  wallet_address: string
+  wallet_name: string | null
+  created_at: Date
+  updated_at: Date
+}
+
+export type NewHyperliquidAgentWallet = Omit<HyperliquidAgentWallet, 'created_at' | 'updated_at'>
