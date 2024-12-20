@@ -7,26 +7,33 @@ The KEKwallet application uses Google Cloud SQL for its database infrastructure.
 ### Prerequisites
 
 1. Google Cloud SDK installed
-2. Access to Google Cloud project
+2. Access to Google Cloud project (lordkekwallet-prod)
 3. Service account with necessary permissions
+
+### Instance Details
+
+- **Instance Name**: kekwallet-db
+- **Connection Name**: lordkekwallet-prod:us-central1:kekwallet-db
+- **Region**: us-central1
+- **Database Version**: MySQL 8.0
+- **Project ID**: lordkekwallet-prod
 
 ### Configuration
 
 1. **Database Connection String**
    The application uses a MySQL connection string in the following format:
    ```
-   mysql://user:password@<instance-connection-name>/kekwallet?ssl=true
+   mysql://user:password@lordkekwallet-prod:us-central1:kekwallet-db/kekwallet?ssl=true
    ```
    Where:
    - `user`: Database user
    - `password`: Database password
-   - `instance-connection-name`: Google Cloud SQL instance connection name
    - `kekwallet`: Database name
 
 2. **Environment Variables**
    Set the following in your `.env` file:
    ```
-   DATABASE_URL=mysql://user:password@<instance-connection-name>/kekwallet?ssl=true
+   DATABASE_URL=mysql://user:password@lordkekwallet-prod:us-central1:kekwallet-db/kekwallet?ssl=true
    ```
 
 3. **Service Account**
@@ -67,3 +74,16 @@ When deploying to production:
 2. Use production-ready connection pool settings
 3. Monitor connection limits and usage
 4. Configure automated backups
+
+### Local Development
+
+For local development:
+1. Install Google Cloud SQL Auth proxy:
+   ```bash
+   gcloud components install cloud_sql_proxy
+   ```
+2. Start the proxy:
+   ```bash
+   cloud_sql_proxy lordkekwallet-prod:us-central1:kekwallet-db
+   ```
+3. Use localhost in your connection string when running with the proxy
