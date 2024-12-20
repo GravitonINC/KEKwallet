@@ -1,150 +1,153 @@
-# Mobile PWA with Embedded Wallet - Starter Template
+# KEKwallet - Mobile PWA with Embedded Wallet
 
-This repository contains a ready-to-use modern crypto mobile [PWA](https://web.dev/progressive-web-apps/) using the latest technologies including embedded [passkey](https://docs.turnkey.com/passkeys/introduction) wallets and mobile [push notifications](https://web.dev/notifications/).
+A mobile-focused Progressive Web Application (PWA) with embedded wallet functionality, push notifications, and secure authentication.
 
-Use this repo to skip all the tedious set up, plumbing, and configuration.
-Fork the repo (or copy and paste the parts you need), layer in your smart contracts and business logic, and start shipping to your users.
+## Features
 
-## Demo
-
-Try out a basic demo on your phone. Visit [pwawallet.xyz](https://pwawallet.xyz) on mobile safari and install the PWA to your homepage. Push notifications on iPhone requires iOS `>=16.4`.
-
-## What can you do with this repository?
-
-- Build a [FriendTech](https://friend.tech) clone
-- Bring your own smart contracts and build your own crypto mobile PWA app
-- Fork it and explore how a modern mobile-focused crypto PWA works
-
-## Features:
-
-This repo is an end-to-end app that implements the following core PWA mobile stack features:
-
-- Mobile-focused PWA;
-- Push notifications configured for iOS and Android
+- Mobile-focused PWA with service worker support
+- Push notifications for iOS (>=16.4) and Android
 - Embedded non-custodial wallet via mobile passkey (with opt-in iCloud recovery)
-- Web 2 Auth/Social integration layer
-- Supports L2s (and any EVM chains) for low fees and fast UX (optional)
-
-### And additional affordances:
-
-- Service workers all configured and set up correctly.
-- Automatically manages PWA updates; Prompts user to update whenever there is a new PWA version pushed live.
-- Clerk user management works out of the box: supports social auth (Twitter, Discord), Username based auth, or Phone number based auth
-- Ready-to-use mobile design system using Tailwind with mobile component library Konsta [shadcn of mobile]) so you can get productive fast.
+- Web2 Auth/Social integration layer
+- Support for EVM chains
+- Automatic PWA updates with user prompts
+- User management with Clerk: social auth (Twitter, Discord), username, or phone number
+- Mobile-first design using Tailwind with Konsta UI components
 
 ## Set up
 
-Let's set up the application. This requires some one-time configuration for certain services.
+### Prerequisites
 
-### Clone repository
+- Node.js with pnpm package manager
+- Google Cloud account with SQL instance
+- Clerk account for authentication
+- Turnkey account for wallet infrastructure
 
-Clone the repository:
+### Installation
 
+1. Clone the repository:
 ```sh
-git clone https://github.com/anagrambuild/mobile-pwa-with-wallet
+git clone https://github.com/GravitonINC/KEKwallet.git
+cd KEKwallet
 ```
 
-Install the dependencies
-
+2. Install dependencies:
 ```sh
 pnpm i
 ```
 
-### One-time set up services and API keys
+3. Copy `.env.sample` to `.env` and configure the following:
 
-#### Web-Push (Mobile push notifications)
+### Configuration
 
-Let's set up the keypair required for push notifications.
+#### Push Notifications
 
+Generate push notification keys:
 ```sh
 pnpm webpush:generate-keys
 ```
 
-Put the generated public and private keys in your `.env` under `NEXT_PUBLIC_WEB_PUSH_PUBLIC_KEY` and `WEB_PUSH_PRIVATE_KEY` respectively.
+Configure in `.env`:
+```
+WEB_PUSH_EMAIL=mailto:your-email@domain.com
+WEB_PUSH_SUBJECT=your-production-domain
+WEB_PUSH_PRIVATE_KEY=generated-private-key
+NEXT_PUBLIC_WEB_PUSH_PUBLIC_KEY=generated-public-key
+```
 
-Also, set the `WEB_PUSH_SUBJECT` to your production domain.
+#### Wallet (Turnkey)
 
-#### Turnkey (Passkey wallet)
-
-Now let's sign up for our secure wallet infrastructure service, [TurnKey](https://turnkey.com).
-
-Go to Turnkey.com and create an Organization for free. Find the Organization ID and add that to your .env under `TURNKEY_ORGANIZATION_ID`
-
-Then run the following commands:
-
+1. Create a Turnkey Organization and get your Organization ID
+2. Configure Turnkey:
 ```sh
 pnpm turnkey:install
 pnpm turnkey:create:api-key
 pnpm turnkey:create:private-key
 ```
 
-Add the generated key pair result of those commands to `TURNKEY_API_PUBLIC_KEY`, `TURNKEY_API_PRIVATE_KEY` in your `.env` file
+3. Add to `.env`:
+```
+TURNKEY_ORGANIZATION_ID=your-org-id
+TURNKEY_API_PUBLIC_KEY=generated-public-key
+TURNKEY_API_PRIVATE_KEY=generated-private-key
+```
 
-#### PlanetScale (Database)
+#### Database (Google Cloud SQL)
 
-Let's set up our database hosting for our offchain data (users, push notifications, etc)
-We'll use [PlanetScale](https://planetscale.com) for their serverless MySQL hosting. If you prefer Postgres, we recommend [neon](https://neon.tech/) for serverless db hosting. Or you can always bring your own SQL database connection if you have an existing database.
+See [Database Documentation](./docs/DATABASE.md) for detailed setup instructions.
 
-To set up the database schema, run:
+1. Configure your database connection string in `.env`:
+```
+DATABASE_URL=mysql://user:password@instance-connection-name/kekwallet?ssl=true
+```
 
+2. Push the database schema:
 ```sh
 pnpm db:push
 ```
 
-You can also inspect and view/edit your database visually using the local Drizzle Studio by running:
-
+3. Optional: Use database studio for visual management:
 ```sh
 pnpm db:studio
 ```
 
-#### Clerk (Web2 Auth)
+#### Authentication (Clerk)
 
-Go to clerk.com and set up an account.
-
-Add API keys to .env
-
-```sh
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=YOUR_PUBLISHABLE_KEY_HERE
-CLERK_SECRET_KEY=YOUR_SECRET_KEY_HERE
+1. Set up a Clerk application
+2. Add to `.env`:
+```
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your-publishable-key
+CLERK_SECRET_KEY=your-secret-key
 ```
 
-Enable and configure the types of web2 authentication you'd like to use within Clerk (e.g. Twitter, Discord, Phone Number, or just plain username). If you don't want to use Clerk, you can roll your own auth, or use something like next-auth.
+#### Web3 Configuration
 
-#### Web3 (Viem/Wagmi codegen)
-
-To generate the web3 code (hooks, etc) via Wagmi CLI, run the following command:
-
+Generate web3 code:
 ```sh
 pnpm web3:codegen
 ```
 
 If you're using anything on Ethereum, be sure to add your RPC to the .env
 
-That's it, you're now set up.
+#### Hyperliquid Configuration
 
-### Start local dev server
+The application uses Hyperliquid's official API endpoints with built-in rate limiting:
+- Mainnet: https://api.hyperliquid.xyz
+- Testnet: https://api.hyperliquid-testnet.xyz
 
-Now you're ready to start the server and get to coding!
+Configure the environment using HYPERLIQUID_TESTNET in your .env file.
 
+### Development
+
+Start the development server:
 ```sh
 pnpm dev
 ```
 
-And you should be able to access your PWA at localhost:3000
+Access the application at `http://localhost:3000`
 
-# Developing with mobile devices
+### Mobile Testing
 
-If your mobile device is on the same network as your development machine, you can access the development server via your local IP address. If not you can employ ngrok to create a tunnel to your local machine.
-`ngrok http 3000`
-This will allow a secure connection too which is helpful in testing service workers
+Two options for mobile device testing:
+1. Use local IP if on same network
+2. Use ngrok for secure tunnel:
+```sh
+ngrok http 3000
+```
+
+## Project Structure
+
+- `app/`: Next.js application routes and pages
+- `pages/`: Legacy page routes and API endpoints
+- `shared/`: Shared utilities and database configuration
+- `hooks/`: Custom React hooks
+- `worker/`: Service worker implementation
 
 ## Technologies
 
-- [Next](https://nextjs.org/) 13 - Page dir and app dir both work
-- [Turnkey](https://turnkey.com) - Passkey non-custodial wallets
-- [Clerk](https://clerk.com/) - Web2 Auth
-- [Tailwind](https://tailwindcss.com/) and with [Konsta](https://konstaui.com/) - Styling
-- [PlanetScale](https://planetscale.com/) - Serverless database hosting
-- [Drizzle](https://orm.drizzle.team/) - Database ORM
-- [Vercel](https://vercel.com) - Deployment
-- [Viem](#) and [Wagmi](#) - Web3 library
+- Next.js 13 (Page and App Router support)
+- Turnkey for passkey non-custodial wallets
+- Clerk for authentication
+- Tailwind CSS with Konsta UI
+- Google Cloud SQL for database
+- Drizzle ORM
+- Viem and Wagmi for Web3

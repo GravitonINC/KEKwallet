@@ -4,7 +4,7 @@ import { TurnkeyApiTypes, TurnkeyClient } from '@turnkey/http'
 import { createActivityPoller } from '@turnkey/http/dist/async'
 import { ApiKeyStamper } from '@turnkey/api-key-stamper'
 import { users } from '@shared/db/schema'
-import { db } from '@shared/db/drizzle'
+import { getDb } from '@shared/db/drizzle'
 import { eq } from 'drizzle-orm'
 import { first } from 'lodash'
 import { refineNonNull } from '@shared/client-utils'
@@ -134,6 +134,7 @@ export default async function createUser(
     // We use this private key id on the TurnKey API to request and sign transactions
     const privateKeyId = refineNonNull(createSubOrgKeyPairResult?.privateKeyId)
 
+    const db = await getDb()
     await db
       .update(users)
       .set({
