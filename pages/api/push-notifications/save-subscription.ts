@@ -30,6 +30,7 @@ export default async function addSubscription(
   let body = req.body as TRequest
   const db = await getDb()
 
+  const db = await getDb()
   await db
     .update(users)
     .set({

@@ -4,11 +4,16 @@ import { getDb } from '@shared/db/drizzle'
 import { users, type User, type NewUser } from '@shared/db/schema'
 import { eq } from 'drizzle-orm'
 
+type ApiResponse =
+  | { user: User | null }
+  | { error: string }
+
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<{ user: User | null }>,
+  res: NextApiResponse<ApiResponse>,
 ) {
   const { userId } = getAuth(req)
+
   if (!userId) {
     return res.status(401).json({ user: null })
   }
@@ -27,7 +32,6 @@ export default async function handler(
     web_push_subscription: null,
   }
 
-  // Add timestamps for insert
   await db
     .insert(users)
     .values({

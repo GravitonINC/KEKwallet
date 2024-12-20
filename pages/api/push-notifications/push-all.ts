@@ -1,5 +1,5 @@
 import { getDb } from '@shared/db/drizzle'
-import { users, type User } from '@shared/db/schema'
+import { users } from '@shared/db/schema'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import webPush from 'web-push'
 import { isNotNull } from 'drizzle-orm'
@@ -39,7 +39,7 @@ const NotifyAllDemoHandler = async (
 
   for (let i = 0; i < usersWithSubscriptions.length; i++) {
     const user = usersWithSubscriptions[i]
-    const subscription = JSON.parse(user.web_push_subscription || '{}') as webPush.PushSubscription
+    const subscription = user.web_push_subscription as any as webPush.PushSubscription
 
     try {
       const responseThing = await webPush.sendNotification(
