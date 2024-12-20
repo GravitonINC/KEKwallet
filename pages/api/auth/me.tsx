@@ -27,7 +27,6 @@ export default async function handler(
     web_push_subscription: null,
   }
 
-  // Add timestamps for insert
   await db
     .insert(users)
     .values({

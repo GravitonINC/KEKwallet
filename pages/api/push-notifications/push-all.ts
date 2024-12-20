@@ -1,5 +1,5 @@
 import { getDb } from '@shared/db/drizzle'
-import { users, type User } from '@shared/db/schema'
+import { users } from '@shared/db/schema'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import webPush from 'web-push'
 import { isNotNull } from 'drizzle-orm'
