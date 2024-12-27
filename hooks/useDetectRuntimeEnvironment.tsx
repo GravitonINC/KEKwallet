@@ -13,8 +13,10 @@ const useDetectRuntimeEnvironment = () => {
   } else if (isMobile === true && isStandaloneMode === true) {
     envMode = 'pwa'
   }
-  // For desktop testing, un-comment:
-  envMode = 'pwa'
+  // Override environment mode for local desktop testing
+  if (process.env.NEXT_PUBLIC_DEPLOYMENT_ENV === 'local') {
+    envMode = 'pwa'
+  }
 
   return envMode
 }
