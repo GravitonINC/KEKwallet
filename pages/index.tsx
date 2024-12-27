@@ -350,6 +350,25 @@ export default function Index() {
                   KEK Wallet | A Hyperliquid trading experience
                 </h1>
               </div>
+              {/* Dappslap Promotion */}
+              <div className="mt-8 text-center">
+                <p className="text-lg font-semibold">
+                  Check out our Solana based AI powered token launcher
+                </p>
+                <a 
+                  href="https://dappslap.fun"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex justify-center mt-4"
+                >
+                  <Image
+                    alt="Dappslap Logo"
+                    src="/images/dappslap-logo_peach-black.svg"
+                    width={140}
+                    height={80}
+                  />
+                </a>
+              </div>
             </div>
             {/* Bottom of page */}
             <div className="p-8 pb-16 flex flex-col justify-end space-y-2">
