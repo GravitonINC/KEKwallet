@@ -340,14 +340,14 @@ export default function Index() {
               <div className="flex items-center justify-center">
                 <Image
                   alt={''}
-                  src={'/images/wallet-icon-2.png'}
+                  src={'/images/x-pp-opt2.png'}
                   width={164}
                   height={164}
                 />
               </div>
               <div>
                 <h1 className="text-3xl font-bold flex justify-center items-center">
-                  PWA with wallet
+                  KEK Wallet - A Hyperliquid trading experience
                 </h1>
               </div>
             </div>
@@ -381,7 +381,7 @@ export default function Index() {
               <div className="flex items-center justify-center">
                 <Image
                   alt={''}
-                  src={'/images/wallet-icon-2.png'}
+                  src={'/images/x-pp-opt2.png'}
                   width={164}
                   height={164}
                 />
