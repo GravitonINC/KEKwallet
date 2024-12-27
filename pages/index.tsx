@@ -57,12 +57,12 @@ const passkeyHttpClient = new TurnkeyClient(
 export default function Index() {
   const isSWInstalled = useInstallWebhookAndOfferUserUpgradeIfAvailable()
   const web2Auth = useAuth()
-
   const userDataQuery = useQuery({
+    enabled: web2Auth.isLoaded,
     queryKey: ['whoami', web2Auth.userId],
-    refetchOnMount: true,
-    refetchOnWindowFocus: true,
-    refetchInterval: 60 * 1000,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchInterval: false,
     queryFn: async () => {
       const res = await fetch('/api/auth/me')
       const json = await res.json()
@@ -87,7 +87,17 @@ export default function Index() {
   })
 
   const isLoadingDataToDeriveUi =
-    userDataQuery.isLoading || web2Auth.isLoaded === false
+    !web2Auth.isLoaded || userDataQuery.isLoading
+
+  if (!web2Auth.isLoaded) {
+    return (
+      <Page>
+        <Block className="flex justify-center items-center h-screen">
+          <Preloader />
+        </Block>
+      </Page>
+    )
+  }
 
   const envMode = useDetectRuntimeEnvironment()
 
