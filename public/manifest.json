@@ -1,6 +1,6 @@
 {
   "name": "KEK Wallet | A Hyperliquid trading experience",
-  "short_name": "kekwallet"
+  "short_name": "kekwallet",
   "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#FFFFFF",
@@ -16,6 +16,12 @@
     {
       "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/apple-touch-icon.png",
+      "sizes": "180x180",
       "type": "image/png"
     }
   ]
