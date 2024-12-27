@@ -3,14 +3,14 @@ import type { ReactNode } from 'react'
 
 import '../globals.css'
 
-const APP_NAME = 'PWA Wallet'
-const APP_DESCRIPTION = 'PWA Wallet Demo'
+const APP_NAME = 'KEK Wallet - A Hyperliquid trading experience'
+const APP_DESCRIPTION = 'KEK Wallet - A Hyperliquid trading experience'
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
   title: {
     default: APP_NAME,
-    template: '%s - PWA App',
+    template: '%s - KEK Wallet',
   },
   description: APP_DESCRIPTION,
   manifest: '/manifest.json',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    shortcut: '/favicon.ico',
+    shortcut: '/frog.png',
     apple: [{ url: '/icons/apple-touch-icon.png', sizes: '192x192' }],
   },
 }
