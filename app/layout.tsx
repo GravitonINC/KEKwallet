@@ -1,5 +1,3 @@
-import { ClerkProvider } from '@clerk/nextjs'
-
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
@@ -33,7 +31,6 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <ClerkProvider>
       <html lang="en" dir="ltr">
         <head>
           <style>{`
@@ -50,6 +47,5 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </head>
         <body>{children}</body>
       </html>
-    </ClerkProvider>
   )
 }
