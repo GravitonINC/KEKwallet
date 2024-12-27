@@ -44,3 +44,4 @@ next-env.d.ts
 **/public/precache**
 
 turnkey-api-creds.jsonlordkekwallet-prod-*.json
+lordkekwallet-prod-*.json
