@@ -281,7 +281,7 @@ export default function Index() {
   return (
     <>
       <Head>
-        <title>PWAWallet | Welcome</title>
+        <title>KEK Wallet | A Hyperliquid trading experience</title>
       </Head>
 
       {/* Loading... */}
@@ -347,7 +347,7 @@ export default function Index() {
               </div>
               <div>
                 <h1 className="text-3xl font-bold flex justify-center items-center">
-                  KEK Wallet - A Hyperliquid trading experience
+                  KEK Wallet | A Hyperliquid trading experience
                 </h1>
               </div>
             </div>
