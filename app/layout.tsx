@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
+import { ClerkProvider } from '@clerk/nextjs'
+import { headers } from 'next/headers'
 
 import '../globals.css'
 
@@ -30,7 +32,11 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  // Force dynamic rendering to ensure Clerk context is available
+  headers();
+  
   return (
+    <ClerkProvider>
       <html lang="en" dir="ltr">
         <head>
           <style>{`
@@ -47,5 +53,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </head>
         <body>{children}</body>
       </html>
+    </ClerkProvider>
   )
 }

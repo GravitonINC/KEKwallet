@@ -45,3 +45,4 @@ next-env.d.ts
 
 turnkey-api-creds.jsonlordkekwallet-prod-*.json
 lordkekwallet-prod-*.json
+fresh-key.json
