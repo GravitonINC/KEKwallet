@@ -1,6 +1,6 @@
 {
   "name": "KEK Wallet | A Hyperliquid trading experience",
-  "short_name": "KEK Wallet"
+  "short_name": "KEK Wallet",
   "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#FFFFFF",
