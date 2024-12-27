@@ -281,7 +281,7 @@ export default function Index() {
   return (
     <>
       <Head>
-        <title>KEK Wallet | A Hyperliquid trading experience</title>
+        <title>KEK Wallet - A Hyperliquid trading experience</title>
       </Head>
 
       {/* Loading... */}
@@ -346,20 +346,26 @@ export default function Index() {
                 />
               </div>
               <div>
-                <h1 className="text-3xl font-bold flex justify-center items-center">
-                  KEK Wallet | A Hyperliquid trading experience
+                <h1 className="text-3xl font-bold text-center">
+                  KEK Wallet
                 </h1>
+                <h2 className="text-xl text-center mt-2">
+                  A Hyperliquid trading experience
+                </h2>
               </div>
+            </div>
+            {/* Bottom of page */}
+            <div className="p-8 pb-16 flex flex-col justify-end space-y-6">
               {/* Dappslap Promotion */}
-              <div className="mt-8 text-center">
-                <p className="text-lg font-semibold">
+              <div className="text-center">
+                <p className="text-lg font-semibold mb-4">
                   Check out our Solana based AI powered token launcher
                 </p>
                 <a 
                   href="https://dappslap.fun"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex justify-center mt-4"
+                  className="flex justify-center"
                 >
                   <Image
                     alt="Dappslap Logo"
@@ -369,9 +375,6 @@ export default function Index() {
                   />
                 </a>
               </div>
-            </div>
-            {/* Bottom of page */}
-            <div className="p-8 pb-16 flex flex-col justify-end space-y-2">
               <Link href={'/sign-in'}>
                 <Button rounded large>
                   Sign In
