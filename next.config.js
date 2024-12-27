@@ -2,7 +2,6 @@ const withPWA = require('@ducanh2912/next-pwa').default({
   dest: 'public',
   cacheOnFrontEndNav: true,
   aggressiveFrontEndNavCaching: true,
-  // Self register so we can push updates ourselves
   register: false,
   workboxOptions: {
     skipWaiting: false,
@@ -13,10 +12,8 @@ const withPWA = require('@ducanh2912/next-pwa').default({
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    // Disable edge runtime to avoid compatibility issues with Clerk
-    runtime: 'nodejs',
+    serverActions: true,
   },
-  // Ensure environment variables are available during build
   env: {
     NEXT_PUBLIC_DEPLOYMENT_ENV: process.env.NEXT_PUBLIC_DEPLOYMENT_ENV,
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
