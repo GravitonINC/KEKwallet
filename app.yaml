@@ -1,0 +1,13 @@
+runtime: nodejs18
+env: standard
+
+env_variables:
+  NEXT_PUBLIC_DEPLOYMENT_ENV: "gcp"
+  # Other environment variables should be configured in Google Cloud Console
+  # or through secure environment configuration
+
+handlers:
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto

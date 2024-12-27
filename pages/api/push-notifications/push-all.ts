@@ -1,4 +1,4 @@
-import { db } from '@shared/db/drizzle'
+import { getDb } from '@shared/db/drizzle'
 import { users } from '@shared/db/schema'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import webPush from 'web-push'
@@ -24,6 +24,8 @@ const NotifyAllDemoHandler = async (
   ) {
     throw new Error('Environment variables supplied not sufficient.')
   }
+
+  const db = await getDb()
   const usersWithSubscriptions = await db
     .select()
     .from(users)
@@ -37,8 +39,7 @@ const NotifyAllDemoHandler = async (
 
   for (let i = 0; i < usersWithSubscriptions.length; i++) {
     const user = usersWithSubscriptions[i]
-    const subscription =
-      user.web_push_subscription as any as webPush.PushSubscription
+    const subscription = user.web_push_subscription as any as webPush.PushSubscription
 
     try {
       const responseThing = await webPush.sendNotification(
