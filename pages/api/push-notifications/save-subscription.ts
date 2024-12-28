@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getAuth } from '@clerk/nextjs/server'
-import { db } from '@shared/db/drizzle'
+import { getDb } from '@shared/db/drizzle'
 import { users } from '@shared/db/schema'
 import { eq } from 'drizzle-orm'
 
@@ -28,11 +28,12 @@ export default async function addSubscription(
   }
 
   let body = req.body as TRequest
+  const db = await getDb()
 
   await db
     .update(users)
     .set({
-      web_push_subscription: body.subscription,
+      web_push_subscription: JSON.stringify(body.subscription),
     })
     .where(eq(users.external_auth_provider_user_id, userId))
 

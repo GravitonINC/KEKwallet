@@ -281,7 +281,7 @@ export default function Index() {
   return (
     <>
       <Head>
-        <title>PWAWallet | Welcome</title>
+        <title>KEK Wallet - A Hyperliquid trading experience</title>
       </Head>
 
       {/* Loading... */}
@@ -340,19 +340,41 @@ export default function Index() {
               <div className="flex items-center justify-center">
                 <Image
                   alt={''}
-                  src={'/images/wallet-icon-2.png'}
+                  src={'/images/x-pp-opt2.png'}
                   width={164}
                   height={164}
                 />
               </div>
               <div>
-                <h1 className="text-3xl font-bold flex justify-center items-center">
-                  PWA with wallet
+                <h1 className="text-3xl font-bold text-center">
+                  KEK Wallet
                 </h1>
+                <h2 className="text-xl text-center mt-2">
+                  A Hyperliquid trading experience
+                </h2>
               </div>
             </div>
             {/* Bottom of page */}
-            <div className="p-8 pb-16 flex flex-col justify-end space-y-2">
+            <div className="p-8 pb-16 flex flex-col justify-end space-y-6">
+              {/* Dappslap Promotion */}
+              <div className="text-center">
+                <p className="text-lg font-semibold mb-4">
+                  Check out our Solana based AI powered token launcher
+                </p>
+                <a 
+                  href="https://dappslap.fun"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex justify-center"
+                >
+                  <Image
+                    alt="Dappslap Logo"
+                    src="/images/dappslap-logo_peach-black.svg"
+                    width={140}
+                    height={80}
+                  />
+                </a>
+              </div>
               <Link href={'/sign-in'}>
                 <Button rounded large>
                   Sign In
@@ -381,7 +403,7 @@ export default function Index() {
               <div className="flex items-center justify-center">
                 <Image
                   alt={''}
-                  src={'/images/wallet-icon-2.png'}
+                  src={'/images/x-pp-opt2.png'}
                   width={164}
                   height={164}
                 />

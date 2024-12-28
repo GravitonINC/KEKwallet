@@ -22,8 +22,8 @@ const wagmiConfig = createConfig({
 
 const queryClient = new QueryClient()
 
-const APP_NAME = 'PWA Wallet'
-const APP_DESCRIPTION = 'PWA with an embedded passkey crypto wallet'
+const APP_NAME = 'KEK Wallet | A Hyperliquid trading experience'
+const APP_DESCRIPTION = 'A Hyperliquid trading experience'
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState('ios')
@@ -82,10 +82,10 @@ export default function App({ Component, pageProps }: AppProps) {
                 <link
                   rel="apple-touch-icon"
                   sizes="180x180"
-                  href="/icons/apple-touch-icon.png"
+                  href="/icons/apple-touch-icon-v2.png?v=2"
                 />
                 <link rel="manifest" href="/manifest.json" />
-                <link rel="shortcut icon" href="/favicon.ico" />
+                <link rel="shortcut icon" href="/frog.png" />
               </Head>
               <Component {...pageProps} />
             </WagmiConfig>
