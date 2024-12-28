@@ -4,7 +4,20 @@ const withPWA = require('@ducanh2912/next-pwa').default({
   register: true,
   workboxOptions: {
     skipWaiting: true,
-    clientsClaim: true
+    clientsClaim: true,
+    runtimeCaching: [
+      {
+        urlPattern: /\/icons\/.*/i,
+        handler: 'NetworkFirst',
+        options: {
+          cacheName: 'icon-cache',
+          expiration: {
+            maxEntries: 10,
+            maxAgeSeconds: 60 * 60 * 24 // 24 hours
+          }
+        }
+      }
+    ]
   },
 })
 
