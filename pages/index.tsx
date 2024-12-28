@@ -346,12 +346,20 @@ export default function Index() {
                 />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-center">
-                  KEK Wallet
-                </h1>
-                <h2 className="text-xl text-center mt-2">
-                  A Hyperliquid trading experience
-                </h2>
+                <div className="flex flex-col items-center space-y-4">
+                  <Image
+                    src="/images/HL+logo_dark.png"
+                    alt="Hyperliquid Logo"
+                    width={200}
+                    height={60}
+                    className="w-auto h-8 sm:h-10 md:h-12 object-contain"
+                    priority
+                  />
+                  <h1 className="text-3xl font-bold text-center">
+                    KEK Wallet
+                  </h1>
+                </div>
+
               </div>
             </div>
             {/* Bottom of page */}
