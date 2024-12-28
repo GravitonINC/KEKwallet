@@ -5,6 +5,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Bell, Coins, Home } from 'lucide-react'
+import { HyperliquidLogo } from '../components/HyperliquidLogo'
 import {
   Page,
   Navbar,
@@ -350,7 +351,9 @@ export default function Index() {
                   KEK Wallet
                 </h1>
                 <h2 className="text-xl text-center mt-2">
-                  A Hyperliquid trading experience
+                  <span>A </span>
+                  <HyperliquidLogo />
+                  <span> trading experience</span>
                 </h2>
               </div>
             </div>
