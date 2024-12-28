@@ -282,7 +282,7 @@ export default function Index() {
   return (
     <>
       <Head>
-        <title>KEK Wallet</title>
+        <title>KEK Wallet - A Hyperliquid trading experience</title>
       </Head>
 
       {/* Loading... */}
@@ -350,9 +350,11 @@ export default function Index() {
                 <h1 className="text-3xl font-bold text-center">
                   KEK Wallet
                 </h1>
-                <div className="flex justify-center mt-2">
+                <h2 className="text-xl text-center mt-2">
+                  <span>A </span>
                   <HyperliquidLogo />
-                </div>
+                  <span> trading experience</span>
+                </h2>
               </div>
             </div>
             {/* Bottom of page */}
