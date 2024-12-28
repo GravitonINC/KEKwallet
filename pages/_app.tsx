@@ -82,10 +82,10 @@ export default function App({ Component, pageProps }: AppProps) {
                 <link
                   rel="apple-touch-icon"
                   sizes="180x180"
-                  href="/icons/apple-touch-icon-v2.png"
+                  href="/icons/apple-touch-icon-v2.png?v=2"
                 />
                 <link rel="manifest" href="/manifest.json" />
-                <link rel="shortcut icon" href="/frog.png" />
+                <link rel="shortcut icon" href="/icons/android-chrome-192x192-v2.png?v=2" />
               </Head>
               <Component {...pageProps} />
             </WagmiConfig>

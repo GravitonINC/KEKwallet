@@ -7,10 +7,10 @@ const withPWA = require('@ducanh2912/next-pwa').default({
     clientsClaim: true,
     runtimeCaching: [
       {
-        urlPattern: /\/icons\/.*/i,
+        urlPattern: /\/icons\/.*\.(?:png|svg).*\?v=2/i,
         handler: 'NetworkFirst',
         options: {
-          cacheName: 'icon-cache',
+          cacheName: 'icon-cache-v2',
           expiration: {
             maxEntries: 10,
             maxAgeSeconds: 60 * 60 * 24 // 24 hours
