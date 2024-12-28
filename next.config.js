@@ -1,10 +1,10 @@
 const withPWA = require('@ducanh2912/next-pwa').default({
   dest: 'public',
-  cacheOnFrontEndNav: true,
-  aggressiveFrontEndNavCaching: true,
-  register: false,
+  cacheOnFrontEndNav: false,
+  register: true,
   workboxOptions: {
-    skipWaiting: false,
+    skipWaiting: true,
+    clientsClaim: true
   },
 })
 
