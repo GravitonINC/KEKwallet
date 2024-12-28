@@ -22,8 +22,8 @@ const wagmiConfig = createConfig({
 
 const queryClient = new QueryClient()
 
-const APP_NAME = 'KEK Wallet'
-const APP_DESCRIPTION = 'A trading experience'
+const APP_NAME = 'KEK Wallet | A Hyperliquid trading experience'
+const APP_DESCRIPTION = 'A Hyperliquid trading experience'
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState('ios')
