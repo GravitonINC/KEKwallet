@@ -281,7 +281,7 @@ export default function Index() {
   return (
     <>
       <Head>
-        <title>KEK Wallet - A Hyperliquid trading experience</title>
+        <title>KEK Wallet</title>
       </Head>
 
       {/* Loading... */}
